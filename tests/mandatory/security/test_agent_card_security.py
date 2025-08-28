@@ -65,7 +65,7 @@ def get_extended_card_url(base_url: str) -> str:
     """
     Construct the extended Agent Card URL according to A2A v0.3.0 specification.
 
-    Per Section 9.1: The endpoint URL is {AgentCard.url}/../agent/authenticatedExtendedCard
+    Per Section 9.1: The endpoint URL is {AgentCard.url}/v1/card
     relative to the base URL specified in the public Agent Card.
     """
     parsed = urllib.parse.urlparse(base_url)
