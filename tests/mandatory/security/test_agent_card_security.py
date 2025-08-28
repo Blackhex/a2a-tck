@@ -70,15 +70,7 @@ def get_extended_card_url(base_url: str) -> str:
     """
     parsed = urllib.parse.urlparse(base_url)
 
-    # Remove the path and add the extended card path
-    base_path = parsed.path.rstrip("/")
-    if base_path:
-        # Go up one directory from the base path, then add the extended card path
-        parent_path = "/".join(base_path.split("/")[:-1])
-        extended_path = f"{parent_path}/agent/authenticatedExtendedCard"
-    else:
-        extended_path = "/agent/authenticatedExtendedCard"
-
+    extended_path = f"{parsed.path}/v1/card"
     # Reconstruct the URL
     extended_url = urllib.parse.urlunparse(
         (
@@ -123,7 +115,7 @@ def test_public_agent_card_access_control(agent_card_data, agent_card_security_i
 
     try:
         # Test unauthenticated access to public Agent Card
-        response = requests.get(base_url, timeout=10)
+        response = requests.get(base_url + "/.well-known/agent-card.json", timeout=10)
 
         # Public Agent Card MUST be accessible without authentication
         assert response.status_code == 200, (
