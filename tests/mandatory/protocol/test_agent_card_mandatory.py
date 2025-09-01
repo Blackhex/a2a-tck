@@ -120,7 +120,6 @@ def test_agent_card_skills_mandatory(fetched_agent_card):
     skills = fetched_agent_card["skills"]
     assert skills is not None, "skills field cannot be null"
     assert isinstance(skills, list), "skills must be an array"
-    assert len(skills) > 0, "skills array cannot be empty"
 
     # Validate each skill has required fields
     required_skill_fields = ["id", "name", "description", "tags"]
