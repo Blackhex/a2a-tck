@@ -164,7 +164,7 @@ class TestJSONRPCClient:
         # Verify correct method and params were used
         call_args = mock_post.call_args
         assert call_args[1]["json"]["method"] == "tasks/get"
-        assert call_args[1]["json"]["params"] == {"taskId": "task-123", "historyLength": 5}
+        assert call_args[1]["json"]["params"] == {"id": "task-123", "historyLength": 5}
 
         # Verify result extraction
         assert result == {"taskId": "task-123", "status": "completed"}
@@ -189,7 +189,7 @@ class TestJSONRPCClient:
         # Verify correct method and params were used
         call_args = mock_post.call_args
         assert call_args[1]["json"]["method"] == "tasks/cancel"
-        assert call_args[1]["json"]["params"] == {"taskId": "task-123"}
+        assert call_args[1]["json"]["params"] == {"id": "task-123"}
 
         # Verify result extraction
         assert result == {"taskId": "task-123", "status": "cancelled"}
