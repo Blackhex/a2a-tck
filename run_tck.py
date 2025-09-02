@@ -236,7 +236,11 @@ def run_test_category(
         cmd.extend(["-m", effective_markers])
 
     if verbose_log:
-        cmd.extend(["-v", "-s", "--log-cli-level=INFO"])  # Full verbose with logging
+        cmd.extend([
+            "-v", "-s",
+            "--log-cli-level=INFO",
+            "--log-file=tck.log"
+        ])  # Full verbose with logging
     elif verbose:
         cmd.append("-v")  # Just verbose output
     else:
